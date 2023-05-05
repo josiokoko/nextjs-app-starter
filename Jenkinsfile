@@ -23,7 +23,7 @@ pipeline {
                 dir('terraform/ecr_registry') {
                     sh "pwd"
                     sh returnStatus: true, script: 'terraform workspace new dev'
-                    sh "terraform init"
+                    sh "terraform init -upgrade"
                     sh "terraform apply -auto-approve -var-file=dev.tfvars"
                     script{
                         registry_id = sh(returnStdout: true, script: "terraform output registry_id").trim()
