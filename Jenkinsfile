@@ -24,10 +24,11 @@ pipeline {
                 sh returnStatus: true, script: 'terraform workspace new dev'
                 sh "terraform init"
                 sh "terraform apply -auto-approve -var-file=dev.tfvars"
-
+                script{
                 registry_id = sh(returnStdout: true, script: "terraform output registry_id").trim()
                 repository_name = sh(returnStdout: true, script: "terraform output repository_name").trim()
                 repository_url = sh(returnStdout: true, script: "terraform output repository_url").trim()
+                }
             }
         }
 
