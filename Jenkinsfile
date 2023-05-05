@@ -56,13 +56,6 @@ pipeline {
             }
         }
 
-        stage('Dev - destroy'){
-            steps{
-                sh returnStatus: true, script: 'terraform workspace new dev'
-                sh "terraform destroy -auto-approve"
-            }
-        }
-
     }
 }
 
