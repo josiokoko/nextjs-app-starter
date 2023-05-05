@@ -72,7 +72,7 @@ def createS3Bucket(bucketName){
     sh returnStatus: true, script: "aws s3 mb s3://${bucketName} --region=us-east-1"
 }
 
-ef createECR(repoName){
+def createECR(repoName){
     sh returnStatus: true, script: "aws ecr create-repository --repository-name ${repoName} --image-scanning-configuration scanOnPush=true --region ${AWS_DEFAULT_REGION}"
 }
 
