@@ -12,7 +12,7 @@ pipeline {
         stage('Create s3 Bucket and DynamoDB'){
             steps{
                 script{
-                    createS3Bucket('joe-terraform-09-09')
+                    createS3Bucket('joe-terraform-2023-05-05')
                     createDynamoDB('onyxquity-fargate-terraform-lock')
                 }
             }

@@ -6,6 +6,13 @@ variable "region" {
 }
 
 
+variable "vpc_cidr" {
+  description = "Default cidr for vpc"
+  type        = string
+  default     = "10.20.0.0/16"
+}
+
+
 variable "tenancy" {
   default = "default"
 }
