@@ -9,11 +9,12 @@ pipeline {
 
     stages{
 
-        stage('Create s3 Bucket and DynamoDB'){
+        stage('Create s3 Bucket, DynamoDB & ECR_REPO'){
             steps{
                 script{
                     createS3Bucket('joe-terraform-2023-05-05')
                     createDynamoDB('onyxquity-fargate-terraform-lock')
+                    createECR('fargate-cicd-pipeline')
                 }
             }
         }
@@ -69,6 +70,10 @@ def getTerraformPath(){
 
 def createS3Bucket(bucketName){
     sh returnStatus: true, script: "aws s3 mb s3://${bucketName} --region=us-east-1"
+}
+
+ef createECR(repoName){
+    sh returnStatus: true, script: "aws ecr create-repository --repository-name ${repoName} --image-scanning-configuration scanOnPush=true --region ${AWS_DEFAULT_REGION}"
 }
 
 
