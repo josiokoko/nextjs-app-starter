@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         PATH = "${PATH}:${getTerraformPath()}"
-        AWS_ACCESS_KEY_ID = credentials('my-predefined-aws-acess-key-id-text') 
-        AWS_SECRET_ACCESS_KEY = credentials('my-predefined-aws-secret-key-text')
+        AWS_DEFAULT_REGION='us-east-1'
+        AWS_CREDENTIALS= credentials('aws-auth')
     }
 
     stages{
@@ -33,7 +33,7 @@ pipeline {
 
         stage("AWS ECR Athentication"){
             steps{
-                sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${registry_id}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+                sh "aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${registry_id}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
             }
         }
 
