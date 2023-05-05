@@ -48,10 +48,12 @@ pipeline {
             }
         }
 
-         stage('Dev - destroy'){
+         stage('Terraform ECR - destroy'){
             steps{
-                sh returnStatus: true, script: 'terraform workspace new dev'
-                sh "terraform destroy -auto-approve"
+                dir('terraform/ecr_registry') {
+                    sh returnStatus: true, script: 'terraform workspace new dev'
+                    sh "terraform destroy -auto-approve"
+                }
             }
         }
 
