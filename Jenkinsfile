@@ -49,14 +49,14 @@ pipeline {
             }
         }
 
-         stage('Terraform ECR - destroy'){
-            steps{
-                dir('terraform/ecr_registry') {
-                    sh returnStatus: true, script: 'terraform workspace new dev'
-                    sh "terraform destroy -auto-approve -var-file=dev.tfvars"
-                }
-            }
-        }
+        //  stage('Terraform ECR - destroy'){
+        //     steps{
+        //         dir('terraform/ecr_registry') {
+        //             sh returnStatus: true, script: 'terraform workspace new dev'
+        //             sh "terraform destroy -auto-approve -var-file=dev.tfvars"
+        //         }
+        //     }
+        // }
 
     }
 }
