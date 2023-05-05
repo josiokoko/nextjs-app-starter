@@ -20,7 +20,8 @@ pipeline {
 
         stage('Dev - init and apply'){
             steps{
-                sh "cd terraform/ecr_registry/"
+                sh "cd terraform/ecr_registry"
+                sh "pwd"
                 sh returnStatus: true, script: 'terraform workspace new dev'
                 sh "terraform init"
                 sh "terraform apply -auto-approve -var-file=dev.tfvars"
