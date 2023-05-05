@@ -18,13 +18,6 @@ pipeline {
             }
         }
 
-        stage('Dev - destroy'){
-            steps{
-                sh returnStatus: true, script: 'terraform workspace new dev'
-                sh "terraform destroy -auto-approve"
-            }
-        }
-
         stage('Dev - init and apply'){
             steps{
                 dir('terraform/ecr_registry') {
@@ -53,6 +46,13 @@ pipeline {
                 sh "docker image build -t ${repository_name}:${BUILD_ID} ."
                 sh "docker tag ${repository_name}:${BUILD_ID} ${repository_url}:${BUILD_ID}"
                 sh "docker push ${repository_url}:${BUILD_ID}"
+            }
+        }
+
+         stage('Dev - destroy'){
+            steps{
+                sh returnStatus: true, script: 'terraform workspace new dev'
+                sh "terraform destroy -auto-approve"
             }
         }
 
