@@ -82,3 +82,5 @@ def repository_name
 def repository_url
 
 // ACCOUNT_ID=$(aws sts get-caller-identity | jq -r .Account)
+
+// aws ecr create-repository --respository-name <repo_name> --region <region_name>
