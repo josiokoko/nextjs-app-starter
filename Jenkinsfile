@@ -12,7 +12,6 @@ pipeline {
         stage('Create s3 Bucket, DynamoDB & ECR_REPO'){
             steps{
                 script{
-                    cleanWs()
                     createS3Bucket('joe-terraform-2023-05-05')
                     createDynamoDB('onyxquity-fargate-terraform-lock')
                     createECR('fargate-cicd-pipeline')
