@@ -9,11 +9,25 @@ pipeline {
 
     stages{
 
-        stage('Create s3 Bucket, DynamoDB & ECR_REPO'){
+        stage('Create S3 Bucket'){
             steps{
                 script{
                     createS3Bucket('joe-terraform-2023-05-05')
+                }
+            }
+        }
+
+        stage('Create DynamoDB'){
+            steps{
+                script{
                     createDynamoDB('onyxquity-fargate-terraform-lock')
+                }
+            }
+        }
+
+        stage('Create ECR_REPO'){
+            steps{
+                script{
                     createECR('fargate-cicd-pipeline')
                 }
             }
